@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>伏魔录游戏运行数据</title>
+      <script type="text/javascript" src="../tools/echart/echarts.js"></script>
+	   <script type="text/javascript" src="../tools/d3/d3.js"></script>
+	   <script type="text/javascript" src="../tools/jquery/jquery-3.3.1.min.js"></script>
+    </head>
+<style type="text/css">
+html,body{
+height: 100%;
+}
+
+.chart_box{
+
+ height:600px;
+ overflow:hidden;
+}
+
+#main1{
+verflow:hidden;
+height:400px;
+width:2000px;
+}
+#nav{
+position:fixed;
+bottom:0px;
+  width: 100%;
+  height:400px;
+  overflow-y:scroll;
+  z-index:9999999;
+}
+#nav span{
+float:left;
+  margin: 0 5px;
+  display: block;
+  line-height: 30px;
+  width:200px;
+  height: 30px;
+  border:solid 1px #000;
+  text-align:center;
+  cursor:pointer;
+}
+#nav span.cur{
+background:#f30;
+}
+
+</style>
+    <body>
+	<div class="box">
+		
+        <div class="chart_box" id="chart_box">
+			
+			<div id="main1"></div>
+			<div style="height:100px"></div>
+		
+        </div>
+		<div id="nav">
+		</div>
+	</div>	
+        <script>
+			var myChart1 = echarts.init(document.getElementById('main1'));
+				
+			 $.get("./get_file.php",function(data){
+				var jsonObj = eval('(' + data + ')');
+				var html='';
+				for(var i=0;i<jsonObj.length;i++){
+				  html += "<span class='file_list' fid='"+jsonObj[i]+"/profiler.txt?random="+Math.random()+"'>"+jsonObj[i]+"</span>";
+				}
+		
+				$.getJSON(jsonObj[0]+"/profiler.txt",function(data){ 
+					myChart1.setOption(data);
+				}) 
+				$("#nav").html(html);
+			  });
+			  
+			  $(document).on('click','.file_list',function(){
+				var file_name = $(this).attr('fid');
+				
+				//进行画图操作
+				
+				$.getJSON(file_name,function(data){ 
+		
+					var myChart1 = echarts.init(document.getElementById('main1'));
+					myChart1.setOption(data);
+				}) 
+			  });
+			
+        </script>
+		
+    </body>
+</html>

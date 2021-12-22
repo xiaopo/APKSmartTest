@@ -1,0 +1,8 @@
+List of devices attached
+3DN0216617003606	device
+46FDU19611007444	device
+7LF6JRIZS4U8NNBY	device
+8f16aaa8	device
+AVY9KA9642016817	device
+CLBGL18910000027	device
+

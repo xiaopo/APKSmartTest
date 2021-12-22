@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<img src="icon.png" width="142" height="142" />
+		<h1>自动化测试工具</h1>
+		<p>请远程10.0.100.223机器 Administrator 开启测试,并且需要关注各台机器运行情况</P>
+		<p>launcher.bat参数需要核对</P>
+		<p>点击下列按钮查看数据</p>
+	   <script type="text/javascript" src="tools/jquery/jquery-3.3.1.min.js"></script>
+    </head>
+	<body>
+
+		<script>
+				function test(){
+					
+					window.open("http://10.0.100.223/output")
+				}
+	
+		</script>
+		<input type="button" onclick="test()" value="查看数据图">
+	</body>
+</html>

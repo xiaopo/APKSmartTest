@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>伏魔录游戏运行数据</title>
+      <script type="text/javascript" src="../tools/echart/echarts.js"></script>
+    </head>
+    <body>
+		
+        <div class="chart_box">
+			
+			<div align="left"><input type="file" id="files1"/></div>
+			<div id="main1" align="left" style="height:500px"></div>
+		
+			<div align="left"><input type="file" id="files2"/></div>
+			<div id="main2" style="float: left;height:500px;"></div>
+		
+        </div>
+		
+        <script>
+			
+			
+			var inputElement = document.getElementById("files1");
+			inputElement.addEventListener("change", handleFiles, false);
+			
+			function handleFiles(data) {
+			   var selectedFile = document.getElementById("files1").files[0];//获取读取的File对象
+			   var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
+			   reader.readAsText(selectedFile);//读取文件的内容
+	 
+				reader.onload = function(){
+					let json = JSON.parse(this.result);
+					var option = json
+	
+					document.getElementById('main1').style.width = 2000;
+					var myChart = echarts.init(document.getElementById('main1'));
+					myChart.setOption(option);
+	
+				};
+	 
+			}
+			
+			var inputElement = document.getElementById("files2");
+			inputElement.addEventListener("change", handleFiles2, false);
+			
+			function handleFiles2(data) {
+			   var selectedFile = document.getElementById("files2").files[0];//获取读取的File对象
+			   var reader = new FileReader();//这里是核心！！！读取操作就是由它完成的。
+			   reader.readAsText(selectedFile);//读取文件的内容
+	 
+				reader.onload = function(){
+					let json = JSON.parse(this.result);
+					var option = json
+			
+					document.getElementById('main2').style.width = 2000;
+					var myChart = echarts.init(document.getElementById('main2'));
+					myChart.setOption(option);
+				};
+	 
+			}
+			
+
+        </script>
+
+
+    </body>
+</html>
